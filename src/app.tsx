@@ -25,7 +25,8 @@ export function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [audioContext, setAudioContext] = useState<AudioContext>();
-  const [bepIntervalo, setBepIntervalo] = useState<number>(3);
+  const [bipIntervalo, setBipIntervalo] = useState<number>(3);
+  const [reverse, setReverse] = useState(false);
 
   const playSound = useCallback(() => {
     if (audioContext) {
@@ -70,11 +71,14 @@ export function App() {
       intervalId = setInterval(() => {
         playSound();
         setActiveIndex((curr) => {
-          if (curr === chords.length * bepIntervalo) {
+          if (reverse && curr === 0) {
+            return chords.length * bipIntervalo;
+          }
+          if (!reverse && curr === chords.length * bipIntervalo) {
             return 0;
           }
 
-          return curr + 1;
+          return !reverse ? curr + 1 : curr - 1;
         });
       }, interval);
     }
@@ -82,7 +86,7 @@ export function App() {
     return () => {
       clearInterval(intervalId);
     };
-  }, [bpm, isPlaying, audioContext, playSound, bepIntervalo]);
+  }, [bpm, isPlaying, audioContext, playSound, bipIntervalo, reverse]);
 
   return (
     <>
@@ -90,8 +94,7 @@ export function App() {
         <h1>Metronome</h1>
         <div style={{ display: "flex", flexDirection: "row" }}>
           {chords.map((chord, index) => {
-            const isActiveChord = index * bepIntervalo === activeIndex;
-
+            const isActiveChord = index * bipIntervalo === activeIndex;
             return (
               <div key={index}>
                 <img
@@ -117,11 +120,23 @@ export function App() {
           <input type="number" value={bpm} onChange={handleBpmChange} />
         </div>
         <div>
-          <label>Intervalo de acordes por bep:</label>
+          <label>Intervalo/BIP:</label>
           <input
             type="number"
-            value={bepIntervalo}
-            onChange={({ target }) => setBepIntervalo(target.value)}
+            value={bipIntervalo}
+            onChange={({ target }) => setBipIntervalo(target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="reverseCheckbox" style={{ cursor: "pointer" }}>
+            Inverter:
+          </label>
+          <input
+            id="reverseCheckbox"
+            type="checkbox"
+            value={bipIntervalo}
+            onChange={({ target }) => setReverse(target.value)}
+            style={{ cursor: "pointer" }}
           />
         </div>
         <button onClick={handleStartStop}>
