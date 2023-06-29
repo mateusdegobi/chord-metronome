@@ -5,7 +5,6 @@ export function App() {
   const [bpm, setBpm] = useState(60);
   const [isPlaying, setIsPlaying] = useState(false);
   const [audioContext, setAudioContext] = useState<AudioContext>();
-  const [intervalId, setIntervalId] = useState<number>();
 
   const playSound = useCallback(() => {
     if (audioContext) {
@@ -20,12 +19,15 @@ export function App() {
       }, 100); // Duração do som do metrônomo em ms
     }
   }, [audioContext]);
+
   const handleBpmChange = useCallback((e) => {
     setBpm(Number(e.target.value));
-  }, []);
+    playSound();
+  }, [playSound]);
+
   const handleStartStop = useCallback(() => {
-    setIsPlaying(!isPlaying);
-  }, [isPlaying]);
+    setIsPlaying((prevIsPlaying) => !prevIsPlaying);
+  }, []);
 
   useEffect(() => {
     const newAudioContext = new AudioContext();
@@ -37,18 +39,18 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    if (isPlaying) {
+    let intervalId: NodeJS.Timeout;
+
+    if (isPlaying && audioContext) {
       const interval = (60 / bpm) * 1000;
-      const id = setInterval(playSound, interval);
-      setIntervalId(id);
-    } else {
-      clearInterval(intervalId);
+      intervalId = setInterval(playSound, interval);
     }
 
     return () => {
       clearInterval(intervalId);
     };
-  }, [bpm, intervalId, isPlaying, playSound]);
+  }, [bpm, isPlaying, audioContext, playSound]);
+
   return (
     <>
       <div>
