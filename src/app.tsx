@@ -116,12 +116,18 @@ export function App() {
         </div>
 
         <div>
-          <label>BPM:</label>
-          <input type="number" value={bpm} onChange={handleBpmChange} />
+          <label htmlFor="bpmInput">BPM:</label>
+          <input
+            id="bpmInput"
+            type="number"
+            value={bpm}
+            onChange={handleBpmChange}
+          />
         </div>
         <div>
-          <label>Intervalo/BIP:</label>
+          <label htmlFor="intervalInput">Interval/BIP:</label>
           <input
+            id="intervalInput"
             type="number"
             value={bipIntervalo}
             onChange={({ target }) => setBipIntervalo(target.value)}
@@ -129,7 +135,7 @@ export function App() {
         </div>
         <div>
           <label htmlFor="reverseCheckbox" style={{ cursor: "pointer" }}>
-            Inverter:
+            Reverse:
           </label>
           <input
             id="reverseCheckbox"
