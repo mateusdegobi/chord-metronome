@@ -108,7 +108,7 @@ export function App() {
 
   return (
     <>
-      <div>
+      <div className="container">
         <h1>Metronome</h1>
         <div style={{ display: "flex", flexDirection: "row" }}>
           {chords.map((chord, index) => {
