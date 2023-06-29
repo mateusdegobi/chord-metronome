@@ -22,6 +22,7 @@ const chords = [
 
 export function App() {
   const [bpm, setBpm] = useState(60);
+  const [bpmIncrement, setBpmIncrement] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
   const [audioContext, setAudioContext] = useState<AudioContext>();
@@ -31,7 +32,14 @@ export function App() {
   const playSound = useCallback(() => {
     if (audioContext) {
       const oscillator = audioContext.createOscillator();
-      oscillator.frequency.value = 650; // Freq. do som do metrônomo
+
+      const isActiveChord = chords.map(
+        (_, index) => (index + 1) * bipIntervalo
+      );
+
+      oscillator.frequency.value = isActiveChord.includes(activeIndex + 1)
+        ? 1000 // play
+        : 650; // interval
       oscillator.connect(audioContext.destination);
       oscillator.start();
 
@@ -40,7 +48,7 @@ export function App() {
         oscillator.disconnect();
       }, 100); // Duração do som do metrônomo em ms
     }
-  }, [audioContext]);
+  }, [activeIndex, audioContext, bipIntervalo]);
 
   const handleBpmChange = useCallback(
     (e) => {
@@ -71,11 +79,13 @@ export function App() {
       intervalId = setInterval(() => {
         playSound();
         setActiveIndex((curr) => {
-          if (reverse && curr === 0) {
+          if (reverse && curr === 1) {
+            setBpm((curr) => curr + bpmIncrement);
             return chords.length * bipIntervalo;
           }
           if (!reverse && curr === chords.length * bipIntervalo) {
-            return 0;
+            setBpm((curr) => curr + bpmIncrement);
+            return 1;
           }
 
           return !reverse ? curr + 1 : curr - 1;
@@ -94,7 +104,7 @@ export function App() {
         <h1>Metronome</h1>
         <div style={{ display: "flex", flexDirection: "row" }}>
           {chords.map((chord, index) => {
-            const isActiveChord = index * bipIntervalo === activeIndex;
+            const isActiveChord = (index + 1) * bipIntervalo === activeIndex;
             return (
               <div key={index}>
                 <img
@@ -130,7 +140,16 @@ export function App() {
             id="intervalInput"
             type="number"
             value={bipIntervalo}
-            onChange={({ target }) => setBipIntervalo(target.value)}
+            onChange={({ target }) => setBipIntervalo(Number(target.value))}
+          />
+        </div>
+        <div>
+          <label htmlFor="bpmIncrementInput">Aumentar velocidade de BPM:</label>
+          <input
+            id="bpmIncrementInput"
+            type="number"
+            value={bpmIncrement}
+            onChange={({ target }) => setBpmIncrement(Number(target.value))}
           />
         </div>
         <div>
