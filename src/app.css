@@ -33,3 +33,11 @@
   border: 3px solid red;
   border-radius: 15px;
 }
+
+.titleChord {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.titleChordActive {
+  color: red;
+}

@@ -5,7 +5,20 @@ import C_chords from "./assets/C.png";
 import Dm_chords from "./assets/Dm.png";
 import F7m_chords from "./assets/F7m.png";
 
-const chords = [C_chords, Dm_chords, F7m_chords];
+const chords = [
+  {
+    image: C_chords,
+    name: "C",
+  },
+  {
+    image: Dm_chords,
+    name: "Dm",
+  },
+  {
+    image: F7m_chords,
+    name: "F7m",
+  },
+];
 
 export function App() {
   const [bpm, setBpm] = useState(60);
@@ -75,16 +88,26 @@ export function App() {
     <>
       <div>
         <h1>Metronome</h1>
-        <div>
+        <div style={{ display: "flex", flexDirection: "row" }}>
           {chords.map((chord, index) => {
+            const isActiveChord = index * bepIntervalo === activeIndex;
+
             return (
-              <img
-                key={index}
-                src={chord}
-                className={`imageChords ${
-                  index * bepIntervalo === activeIndex && "activeImageChord"
-                }`}
-              />
+              <div key={index}>
+                <img
+                  src={chord.image}
+                  className={`imageChords ${
+                    isActiveChord && "activeImageChord"
+                  }`}
+                />
+                <p
+                  className={`titleChord ${
+                    isActiveChord && "titleChordActive"
+                  }`}
+                >
+                  {chord.name}
+                </p>
+              </div>
             );
           })}
         </div>
