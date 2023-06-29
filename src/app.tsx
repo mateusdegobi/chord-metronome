@@ -96,7 +96,7 @@ export function App() {
     return () => {
       clearInterval(intervalId);
     };
-  }, [bpm, isPlaying, audioContext, playSound, bipIntervalo, reverse]);
+  }, [bpm, isPlaying, audioContext, playSound, bipIntervalo, reverse, bpmIncrement]);
 
   return (
     <>
