@@ -2,6 +2,8 @@
 
 O Chord Switching é um aplicativo web open source projetado para auxiliar os iniciantes na guitarra e no violão a aperfeiçoar as trocas de acordes de forma eficiente e divertida. Foi criado a partir da experiência pessoal de seu desenvolvedor, que ao iniciar seus estudos musicais, sentiu dificuldades em desenvolver velocidade nas transições entre os acordes.
 
+![image](https://github.com/mateusdegobi/guitar-chord-metronome/assets/17092357/f8d62257-d9ab-478a-9cc2-b5d782dac4c7)
+
 ## Funcionalidades Principais
 
 - Configuração personalizada de acordes: O Chord Switching permite que você escolha os acordes específicos nos quais deseja treinar. Não há limite para a quantidade de acordes que podem ser adicionados.
@@ -26,10 +28,10 @@ Contribuições são bem-vindas! Se você deseja adicionar recursos, corrigir pr
 
 ## Licença
 
-O Chord Switching é distribuído sob a licença [MIT](link para a licença). Sinta-se à vontade para utilizar, modificar e distribuir este projeto de acordo com os termos da licença.
+O Chord Switching é distribuído sob a licença [MIT](https://github.com/mateusdegobi/guitar-chord-metronome/blob/develop/LICENCE). Sinta-se à vontade para utilizar, modificar e distribuir este projeto de acordo com os termos da licença.
 
 ## Contato
 
-Se você tiver alguma dúvida, sugestão ou comentário, sinta-se à vontade para entrar em contato através do email [seu email] ou pelo [link do projeto no GitHub](link para o repositório no GitHub).
+Se você tiver alguma dúvida, sugestão ou comentário, sinta-se à vontade para entrar em contato através do email [devmateusdegobi@gmail.com] ou pelo [link do projeto no GitHub](https://github.com/mateusdegobi/guitar-chord-metronome).
 
 Esperamos que o Chord Switching seja útil em sua jornada de aprendizado musical. Divirta-se treinando e aprimorando suas trocas de acordes!
