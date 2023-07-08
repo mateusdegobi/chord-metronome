@@ -66,9 +66,9 @@ export function App() {
         setActiveIndex((curr) => {
           if (reverse && curr === 1) {
             setBpm((curr) => curr + bpmIncrement);
-            return chords.length * bipIntervalo;
+            return selectedChords.length * bipIntervalo;
           }
-          if (!reverse && curr === chords.length * bipIntervalo) {
+          if (!reverse && curr === selectedChords.length * bipIntervalo) {
             setBpm((curr) => curr + bpmIncrement);
             return 1;
           }
@@ -89,6 +89,7 @@ export function App() {
     bipIntervalo,
     reverse,
     bpmIncrement,
+    selectedChords.length,
   ]);
 
   const refSelect = createRef<HTMLSelectElement>();
