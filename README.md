@@ -19,7 +19,7 @@ Chord Switching is an open-source web application designed to assist beginners i
 
 ## How to Use
 
-1. Access the Chord Switching web application [here](application link).
+1. Access the Chord Switching web application [here](https://mateusdegobi.github.io/guitar-chord-metronome/).
 2. Configure the chords you want to practice by entering their names in the designated field.
 3. Set the desired BPM tempo.
 4. Choose the BPM interval at which each chord will be played.

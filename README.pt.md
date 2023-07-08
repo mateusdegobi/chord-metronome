@@ -14,7 +14,7 @@ O Chord Switching é um aplicativo web open source projetado para auxiliar os in
 
 ## Como Usar
 
-1. Acesse o aplicativo web Chord Switching [aqui](link do aplicativo).
+1. Acesse o aplicativo web Chord Switching [aqui](https://mateusdegobi.github.io/guitar-chord-metronome/).
 2. Configure os acordes que deseja treinar, inserindo seus nomes no campo designado.
 3. Defina o tempo de BPM desejado.
 4. Escolha o intervalo de BPM em que cada acorde será tocado.
