@@ -9,7 +9,6 @@ Chord Switching is an open-source web application designed to assist beginners i
 
 ![image](https://github.com/mateusdegobi/guitar-chord-metronome/assets/17092357/f8d62257-d9ab-478a-9cc2-b5d782dac4c7)
 
-
 ## Key Features
 
 - Customizable chord configuration: Chord Switching allows you to choose the specific chords you want to practice with. There is no limit to the number of chords you can add.
@@ -34,10 +33,10 @@ Contributions are welcome! If you wish to add features, fix issues, or improve t
 
 ## License
 
-Chord Switching is distributed under the [MIT license](license link). Feel free to use, modify, and distribute this project in accordance with the terms of the license.
+Chord Switching is distributed under the [MIT license](https://github.com/mateusdegobi/guitar-chord-metronome/blob/develop/LICENCE). Feel free to use, modify, and distribute this project in accordance with the terms of the license.
 
 ## Contact
 
-If you have any questions, suggestions, or comments, feel free to contact us via email at [your email] or through the [project's GitHub repository](link to the GitHub repository).
+If you have any questions, suggestions, or comments, feel free to contact us via email at [devmateusdegobi@gmail.com] or through the [project's GitHub repository](https://github.com/mateusdegobi/guitar-chord-metronome).
 
 We hope that Chord Switching proves helpful in your musical learning journey. Enjoy practicing and improving your chord changes!
