@@ -7,6 +7,9 @@
 
 Chord Switching is an open-source web application designed to assist beginners in guitar and ukulele in improving their chord switching speed effectively and enjoyable. It originated from the developer's personal experience of purchasing a guitar and wanting to learn how to play it, but struggling with the speed of chord changes.
 
+![image](https://github.com/mateusdegobi/guitar-chord-metronome/assets/17092357/f8d62257-d9ab-478a-9cc2-b5d782dac4c7)
+
+
 ## Key Features
 
 - Customizable chord configuration: Chord Switching allows you to choose the specific chords you want to practice with. There is no limit to the number of chords you can add.
