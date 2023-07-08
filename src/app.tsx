@@ -1,26 +1,11 @@
 import { useState, useEffect, useCallback } from "preact/hooks";
 import "./app.css";
-
-import C_chords from "./assets/C.png";
-import Dm_chords from "./assets/Dm.png";
-import F7m_chords from "./assets/F7m.png";
-
-const chords = [
-  {
-    image: C_chords,
-    name: "C",
-  },
-  {
-    image: Dm_chords,
-    name: "Dm",
-  },
-  {
-    image: F7m_chords,
-    name: "F7m",
-  },
-];
+import chords, { ChordType } from "./constants/chords";
+import { createRef } from "preact/compat";
 
 export function App() {
+  const [selectedChords, setSelectedChords] = useState<ChordType[]>([]);
+
   const [bpm, setBpm] = useState(60);
   const [bpmIncrement, setBpmIncrement] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -33,7 +18,7 @@ export function App() {
     if (audioContext) {
       const oscillator = audioContext.createOscillator();
 
-      const isActiveChord = chords.map(
+      const isActiveChord = selectedChords.map(
         (_, index) => (index + 1) * bipIntervalo
       );
 
@@ -48,7 +33,7 @@ export function App() {
         oscillator.disconnect();
       }, 100); // Duração do som do metrônomo em ms
     }
-  }, [activeIndex, audioContext, bipIntervalo]);
+  }, [activeIndex, audioContext, bipIntervalo, selectedChords]);
 
   const handleBpmChange = useCallback(
     (e) => {
@@ -106,12 +91,21 @@ export function App() {
     bpmIncrement,
   ]);
 
+  const refSelect = createRef<HTMLSelectElement>();
+  const handleAddChordList = useCallback(() => {
+    const selectedChord = refSelect.current?.value;
+    const findChord = chords.find((chord) => chord.chord === selectedChord);
+    if (findChord) {
+      setSelectedChords((curr) => [...curr, findChord]);
+    }
+  }, [refSelect]);
+
   return (
     <>
       <div className="container">
         <h1>Metronome</h1>
         <div style={{ display: "flex", flexDirection: "row" }}>
-          {chords.map((chord, index) => {
+          {selectedChords.map((chord, index) => {
             const isActiveChord = (index + 1) * bipIntervalo === activeIndex;
             return (
               <div key={index}>
@@ -126,7 +120,7 @@ export function App() {
                     isActiveChord && "titleChordActive"
                   }`}
                 >
-                  {chord.name}
+                  {chord.chord}
                 </p>
               </div>
             );
@@ -134,6 +128,19 @@ export function App() {
         </div>
 
         <div>
+          <div>
+            <select ref={refSelect}>
+              <option disabled selected>
+                Selecione
+              </option>
+              {chords.map((chord) => (
+                <option value={chord.chord} key={chord.chord}>
+                  {chord.chord}
+                </option>
+              ))}
+            </select>
+            <button onClick={handleAddChordList}>Adicionar</button>
+          </div>
           <label htmlFor="bpmInput">BPM:</label>
           <input
             id="bpmInput"
@@ -152,7 +159,7 @@ export function App() {
           />
         </div>
         <div>
-          <label htmlFor="bpmIncrementInput">Aumentar velocidade de BPM:</label>
+          <label htmlFor="bpmIncrementInput">increment BPM/cicle:</label>
           <input
             id="bpmIncrementInput"
             type="number"
